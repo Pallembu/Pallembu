@@ -2,10 +2,11 @@
 
 import { useState, useEffect } from 'react'
 import Link from 'next/link'
-import { usePathname } from 'next/navigation'
+import { usePathname, useRouter } from 'next/navigation'
 import Image from 'next/image'
 import { sanityFetch, queries } from '@/sanity/lib/client'
 import { urlFor } from '@/sanity/lib/image'
+import { useTranslations } from 'next-intl'
 
 interface SiteSettings {
   _id: string
@@ -29,6 +30,11 @@ const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [siteSettings, setSiteSettings] = useState<SiteSettings | null>(null)
   const pathname = usePathname()
+  const router = useRouter()
+  const t = useTranslations('navigation')
+  
+  // Simple language detection from URL
+  const currentLocale = pathname.startsWith('/en') ? 'en' : 'id'
 
   useEffect(() => {
     const fetchSiteSettings = async () => {
@@ -47,19 +53,41 @@ const Header = () => {
   }, [])
 
   const navigation = [
-    { name: 'Home', href: '/' },
-    { name: 'About', href: '/about' },
-    { name: 'Services', href: '/services' },
-    { name: 'Gallery', href: '/gallery' },
-    { name: 'Blog', href: '/blog' },
-    { name: 'Contact', href: '/contact' },
+    { name: t('home'), href: '/' },
+    { name: t('about'), href: '/about' },
+    { name: t('services'), href: '/services' },
+    { name: t('gallery'), href: '/gallery' },
+    { name: t('blog'), href: '/blog' },
+    { name: t('contact'), href: '/contact' },
   ]
+
+  const switchLocale = (newLocale: string) => {
+    // Simple locale switching logic
+    let newPath = pathname
+    
+    if (pathname.startsWith('/en')) {
+      // Remove /en prefix
+      newPath = pathname.substring(3) || '/'
+    } else if (pathname.startsWith('/id')) {
+      // Remove /id prefix  
+      newPath = pathname.substring(3) || '/'
+    }
+    
+    // Add new locale prefix
+    const finalPath = `/${newLocale}${newPath === '/' ? '' : newPath}`
+    router.push(finalPath)
+  }
 
   const isActive = (href: string) => {
     if (href === '/') {
-      return pathname === '/'
+      return pathname === '/' || pathname === '/id' || pathname === '/en'
     }
-    return pathname.startsWith(href)
+    // Check if current path matches (considering locale prefixes)
+    const pathWithoutLocale = pathname.replace(/^\/(id|en)/, '') || '/'
+    if (href === '/') {
+      return pathWithoutLocale === '/'
+    }
+    return pathWithoutLocale.startsWith(href)
   }
 
   return (
@@ -87,7 +115,7 @@ const Header = () => {
           </div>
 
           {/* Desktop Navigation */}
-          <nav className="hidden md:flex space-x-8">
+          <nav className="hidden md:flex space-x-8 items-center">
             {navigation.map((item) => (
               <Link
                 key={item.name}
@@ -101,6 +129,30 @@ const Header = () => {
                 {item.name}
               </Link>
             ))}
+            
+            {/* Language Switcher */}
+            <div className="flex space-x-1 ml-4 border-l pl-4">
+              <button
+                onClick={() => switchLocale('id')}
+                className={`px-3 py-1 rounded text-sm font-medium transition-colors duration-200 ${
+                  currentLocale === 'id'
+                    ? 'bg-primary text-white'
+                    : 'text-gray-600 hover:text-primary hover:bg-gray-100'
+                }`}
+              >
+                ID
+              </button>
+              <button
+                onClick={() => switchLocale('en')}
+                className={`px-3 py-1 rounded text-sm font-medium transition-colors duration-200 ${
+                  currentLocale === 'en'
+                    ? 'bg-primary text-white'
+                    : 'text-gray-600 hover:text-primary hover:bg-gray-100'
+                }`}
+              >
+                EN
+              </button>
+            </div>
           </nav>
 
           {/* CTA Button */}
@@ -175,13 +227,47 @@ const Header = () => {
               {item.name}
             </Link>
           ))}
+          
+          {/* Mobile Language Switcher */}
+          <div className="px-3 py-2 border-t border-gray-200">
+            <p className="text-sm font-medium text-gray-500 mb-2">Language / Bahasa</p>
+            <div className="flex space-x-2">
+              <button
+                onClick={() => {
+                  switchLocale('id')
+                  setIsMenuOpen(false)
+                }}
+                className={`flex-1 px-3 py-2 rounded text-sm font-medium transition-colors duration-200 ${
+                  currentLocale === 'id'
+                    ? 'bg-primary text-white'
+                    : 'text-gray-600 hover:text-primary hover:bg-gray-100 border border-gray-300'
+                }`}
+              >
+                🇮🇩 Indonesia
+              </button>
+              <button
+                onClick={() => {
+                  switchLocale('en')
+                  setIsMenuOpen(false)
+                }}
+                className={`flex-1 px-3 py-2 rounded text-sm font-medium transition-colors duration-200 ${
+                  currentLocale === 'en'
+                    ? 'bg-primary text-white'
+                    : 'text-gray-600 hover:text-primary hover:bg-gray-100 border border-gray-300'
+                }`}
+              >
+                🇺🇸 English
+              </button>
+            </div>
+          </div>
+
           <div className="px-3 py-2">
             <Link
               href="/contact"
               className="block w-full text-center bg-primary text-white px-4 py-2 rounded-lg text-sm font-medium hover:bg-primary-dark transition-colors duration-200"
               onClick={() => setIsMenuOpen(false)}
             >
-              Book Now
+              {t('bookNow')}
             </Link>
           </div>
         </div>

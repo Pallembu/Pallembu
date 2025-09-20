@@ -3,6 +3,8 @@ import { Poppins } from "next/font/google";
 import "./globals.css";
 import MainLayout from "../layouts/MainLayout";
 import { headers } from "next/headers";
+import { NextIntlClientProvider } from 'next-intl';
+import { getMessages } from 'next-intl/server';
 
 const poppins = Poppins({
   variable: "--font-poppins",
@@ -57,7 +59,7 @@ export const metadata: Metadata = {
   },
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
@@ -65,13 +67,25 @@ export default function RootLayout({
   const headersList = headers();
   const pathname = headersList.get('x-pathname') || '';
   const isStudioRoute = pathname.startsWith('/studio');
+  
+  // Simple locale detection - default to Indonesian
+  let locale = 'id';
+  
+  // Check if URL contains /en to use English
+  if (pathname.includes('/en')) {
+    locale = 'en';
+  }
+  
+  const messages = await getMessages({ locale });
 
   return (
-    <html lang="en">
+    <html lang={locale}>
       <body
         className={`${poppins.variable} font-poppins antialiased`}
       >
-        {isStudioRoute ? children : <MainLayout>{children}</MainLayout>}
+        <NextIntlClientProvider messages={messages} locale={locale}>
+          {isStudioRoute ? children : <MainLayout>{children}</MainLayout>}
+        </NextIntlClientProvider>
       </body>
     </html>
   );

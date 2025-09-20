@@ -1,0 +1,77 @@
+{
+  "navigation": {
+    "home": "Beranda",
+    "about": "Tentang",
+    "services": "Layanan", 
+    "gallery": "Galeri",
+    "blog": "Blog",
+    "contact": "Kontak",
+    "bookNow": "Pesan Sekarang"
+  },
+  "hero": {
+    "title": "Jelajahi Keajaiban Malang",
+    "subtitle": "Rasakan petualangan tak terlupakan dengan tur terpercaya di Malang dan sekitarnya",
+    "cta": "Mulai Petualangan",
+    "cta_secondary": "Lihat Paket"
+  },
+  "about": {
+    "title": "Tentang Kami", 
+    "description": "Kami adalah penyedia jasa tur profesional di Malang dengan pengalaman lebih dari 10 tahun.",
+    "subtitle": "Mengapa Memilih Kami?",
+    "experience": "Pengalaman 10+ Tahun",
+    "professional": "Guide Profesional",
+    "affordable": "Harga Terjangkau",
+    "satisfaction": "Kepuasan Terjamin"
+  },
+  "services": {
+    "title": "Layanan Kami",
+    "subtitle": "Paket wisata lengkap untuk pengalaman terbaik di Malang",
+    "viewDetails": "Lihat Detail",
+    "bookNow": "Pesan Sekarang"
+  },
+  "gallery": {
+    "title": "Galeri Wisata",
+    "subtitle": "Saksikan keindahan destinasi wisata yang menanti Anda"
+  },
+  "blog": {
+    "title": "Blog & Tips Wisata",
+    "subtitle": "Informasi terbaru dan tips perjalanan untuk liburan sempurna",
+    "readMore": "Baca Selengkapnya",
+    "categories": "Kategori",
+    "search": "Cari artikel..."
+  },
+  "contact": {
+    "title": "Hubungi Kami",
+    "subtitle": "Siap membantu merencanakan liburan impian Anda",
+    "name": "Nama",
+    "email": "Email", 
+    "phone": "Nomor Telepon",
+    "message": "Pesan",
+    "submit": "Kirim Pesan",
+    "address": "Alamat",
+    "workingHours": "Jam Kerja"
+  },
+  "testimonials": {
+    "title": "Apa Kata Mereka",
+    "subtitle": "Testimoni dari pelanggan yang telah merasakan layanan kami"
+  },
+  "features": {
+    "title": "Mengapa Memilih Kami",
+    "subtitle": "Komitmen kami untuk memberikan pengalaman terbaik"
+  },
+  "common": {
+    "language": "Bahasa",
+    "loading": "Memuat...",
+    "error": "Terjadi kesalahan",
+    "tryAgain": "Coba Lagi",
+    "back": "Kembali",
+    "next": "Selanjutnya",
+    "previous": "Sebelumnya"
+  },
+  "footer": {
+    "company": "Perusahaan",
+    "quickLinks": "Tautan Cepat", 
+    "followUs": "Ikuti Kami",
+    "copyright": "Hak Cipta © 2024 MHS Tour. Semua hak dilindungi."
+  }
+}

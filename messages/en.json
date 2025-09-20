@@ -1,0 +1,77 @@
+{
+  "navigation": {
+    "home": "Home",
+    "about": "About", 
+    "services": "Services",
+    "gallery": "Gallery",
+    "blog": "Blog",
+    "contact": "Contact",
+    "bookNow": "Book Now"
+  },
+  "hero": {
+    "title": "Explore the Wonders of Malang",
+    "subtitle": "Experience unforgettable adventures with trusted tours in Malang and surrounding areas",
+    "cta": "Start Adventure", 
+    "cta_secondary": "View Packages"
+  },
+  "about": {
+    "title": "About Us",
+    "description": "We are a professional tour service provider in Malang with more than 10 years of experience.",
+    "subtitle": "Why Choose Us?",
+    "experience": "10+ Years Experience",
+    "professional": "Professional Guides",
+    "affordable": "Affordable Prices",
+    "satisfaction": "Satisfaction Guaranteed"
+  },
+  "services": {
+    "title": "Our Services",
+    "subtitle": "Complete tour packages for the best experience in Malang",
+    "viewDetails": "View Details",
+    "bookNow": "Book Now"
+  },
+  "gallery": {
+    "title": "Travel Gallery",
+    "subtitle": "Witness the beauty of tourist destinations waiting for you"
+  },
+  "blog": {
+    "title": "Blog & Travel Tips",
+    "subtitle": "Latest information and travel tips for the perfect vacation",
+    "readMore": "Read More",
+    "categories": "Categories", 
+    "search": "Search articles..."
+  },
+  "contact": {
+    "title": "Contact Us",
+    "subtitle": "Ready to help plan your dream vacation",
+    "name": "Name",
+    "email": "Email",
+    "phone": "Phone Number", 
+    "message": "Message",
+    "submit": "Send Message",
+    "address": "Address",
+    "workingHours": "Working Hours"
+  },
+  "testimonials": {
+    "title": "What They Say",
+    "subtitle": "Testimonials from customers who have experienced our services"
+  },
+  "features": {
+    "title": "Why Choose Us",
+    "subtitle": "Our commitment to providing the best experience"
+  },
+  "common": {
+    "language": "Language",
+    "loading": "Loading...",
+    "error": "An error occurred", 
+    "tryAgain": "Try Again",
+    "back": "Back",
+    "next": "Next",
+    "previous": "Previous"
+  },
+  "footer": {
+    "company": "Company",
+    "quickLinks": "Quick Links",
+    "followUs": "Follow Us", 
+    "copyright": "Copyright © 2024 MHS Tour. All rights reserved."
+  }
+}
