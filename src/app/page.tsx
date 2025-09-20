@@ -5,14 +5,23 @@ import { sanityFetch, queries } from '@/sanity/lib/client'
 import { urlForHero, urlForProduct } from '@/sanity/lib/image'
 import { blogService } from '@/lib/blogService'
 import FeaturesSection from '@/components/FeaturesSection'
-import TestimonialsSection from '@/components/TestimonialsSection'
 import BlogCard from '@/components/BlogCard'
-import AnimatedSection, { PageTransition, StaggerContainer, StaggerItem } from '@/components/AnimatedSection'
+import { PageTransition, StaggerContainer, StaggerItem } from '@/components/AnimatedSection'
+import dynamicImport from 'next/dynamic'
+
+// Dynamic imports for below-the-fold components
+const TestimonialsSection = dynamicImport(() => import('@/components/TestimonialsSection'), {
+  loading: () => <div className="h-96 animate-pulse bg-gray-100 rounded-lg"></div>,
+})
+
+const AnimatedSection = dynamicImport(() => import('@/components/AnimatedSection'), {
+  loading: () => <div className="animate-pulse bg-gray-50 h-32"></div>,
+  ssr: true
+})
 import { generateOrganizationJsonLd } from '@/lib/jsonLd'
 
-// Force dynamic rendering and disable caching for development
-export const dynamic = 'force-dynamic'
-export const revalidate = 0
+// Use ISR for better performance while keeping content fresh
+export const revalidate = 3600 // Revalidate every hour
 
 // Generate dynamic metadata
 export async function generateMetadata(): Promise<Metadata> {

@@ -2,80 +2,63 @@ import { NextRequest, NextResponse } from 'next/server'
 import { z } from 'zod'
 import nodemailer from 'nodemailer'
 import { client } from '@/sanity/lib/client'
-
-// Rate limiting storage (in production, use Redis or database)
-const rateLimitMap = new Map<string, { count: number; lastReset: number }>()
-
-// Rate limiting function
-function rateLimit(ip: string, limit: number = 5, windowMs: number = 15 * 60 * 1000): boolean {
-  const now = Date.now()
-  const userLimit = rateLimitMap.get(ip) || { count: 0, lastReset: now }
-
-  // Reset count if window has passed
-  if (now - userLimit.lastReset > windowMs) {
-    userLimit.count = 0
-    userLimit.lastReset = now
-  }
-
-  // Check if limit exceeded
-  if (userLimit.count >= limit) {
-    return false
-  }
-
-  // Increment count
-  userLimit.count++
-  rateLimitMap.set(ip, userLimit)
-  return true
-}
-
-// Enhanced validation schema matching frontend
-const contactFormSchema = z.object({
-  name: z.string()
-    .min(2, 'Name must be at least 2 characters')
-    .max(50, 'Name must be less than 50 characters')
-    .regex(/^[a-zA-Z\s]+$/, 'Name can only contain letters and spaces'),
-  email: z.string()
-    .email('Please enter a valid email address')
-    .min(5, 'Email must be at least 5 characters')
-    .max(100, 'Email must be less than 100 characters'),
-  phone: z.string()
-    .optional()
-    .refine((val) => !val || /^[\+]?[0-9\s\-\(\)]{10,15}$/.test(val), {
-      message: 'Please enter a valid phone number'
-    }),
-  subject: z.string()
-    .min(5, 'Subject must be at least 5 characters')
-    .max(100, 'Subject must be less than 100 characters'),
-  message: z.string()
-    .min(20, 'Message must be at least 20 characters')
-    .max(1000, 'Message must be less than 1000 characters'),
-  tourInterest: z.string().optional(),
-  travelDate: z.string().optional(),
-  groupSize: z.string()
-    .optional()
-    .refine((val) => !val || (parseInt(val) >= 1 && parseInt(val) <= 50), {
-      message: 'Group size must be between 1 and 50'
-    }),
-  budget: z.string().optional()
-})
+import { ratelimit, getClientIP, rateLimitErrorResponse } from '@/lib/rateLimit'
+import { 
+  contactFormSchema, 
+  validateSubmissionTiming,
+  generateCSRFToken,
+  type SanitizedContactForm 
+} from '@/lib/inputValidation'
 
 export async function POST(request: NextRequest) {
   try {
     // Rate limiting check
-    const ip = request.ip || request.headers.get('x-forwarded-for') || 'unknown'
-    if (!rateLimit(ip)) {
-      return NextResponse.json(
-        { 
-          error: 'Too many requests',
-          message: 'Please wait before submitting another form. Limit: 5 requests per 15 minutes.'
-        },
-        { status: 429 }
-      )
+    const ip = getClientIP(request)
+    const { success, limit, reset, remaining } = await ratelimit.limit(ip)
+    
+    if (!success) {
+      return rateLimitErrorResponse()
     }
 
     const body = await request.json()
     
-    // Validate with Zod schema
+    // Additional security checks
+    
+    // 1. Check for honeypot field (bot detection)
+    if (body.website) {
+      return NextResponse.json(
+        { error: 'Submission rejected' },
+        { status: 400 }
+      )
+    }
+    
+    // 2. Validate submission timing (prevent automated submissions)
+    if (body.timestamp && !validateSubmissionTiming(body.timestamp)) {
+      return NextResponse.json(
+        { error: 'Invalid submission timing' },
+        { status: 400 }
+      )
+    }
+    
+    // 3. Check Content-Type header
+    const contentType = request.headers.get('content-type')
+    if (!contentType?.includes('application/json')) {
+      return NextResponse.json(
+        { error: 'Invalid content type' },
+        { status: 400 }
+      )
+    }
+    
+    // 4. Validate request size (prevent large payloads)
+    const bodyString = JSON.stringify(body)
+    if (bodyString.length > 10000) { // 10KB limit
+      return NextResponse.json(
+        { error: 'Request too large' },
+        { status: 413 }
+      )
+    }
+    
+    // Validate with enhanced Zod schema (includes sanitization)
     const validationResult = contactFormSchema.safeParse(body)
     if (!validationResult.success) {
       return NextResponse.json(

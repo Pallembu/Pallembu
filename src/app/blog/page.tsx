@@ -12,8 +12,8 @@ import { generateBlogListJsonLd, generateBreadcrumbJsonLd } from '@/lib/jsonLd'
 import { Suspense } from 'react'
 import { Search, Filter, Calendar, User, Tag } from 'lucide-react'
 
-// Force dynamic rendering
-export const dynamic = 'force-dynamic'
+// Use ISR for blog listing performance
+export const revalidate = 1800 // Revalidate every 30 minutes
 
 // Generate metadata
 export async function generateMetadata({

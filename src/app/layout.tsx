@@ -5,6 +5,7 @@ import MainLayout from "../layouts/MainLayout";
 import { headers } from "next/headers";
 import { NextIntlClientProvider } from 'next-intl';
 import { getMessages } from 'next-intl/server';
+import WebVitalsReporter from '@/components/WebVitalsReporter';
 
 const poppins = Poppins({
   variable: "--font-poppins",
@@ -87,11 +88,26 @@ export default async function RootLayout({
 
   return (
     <html lang={locale}>
+      <head>
+        {/* Preload critical fonts */}
+        <link
+          rel="preload"
+          href="https://fonts.gstatic.com/s/poppins/v20/pxiEyp8kv8JHgFVrJJfecg.woff2"
+          as="font"
+          type="font/woff2"
+          crossOrigin="anonymous"
+        />
+        {/* DNS prefetch for external resources */}
+        <link rel="dns-prefetch" href="https://cdn.sanity.io" />
+        <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
+        <link rel="dns-prefetch" href="https://fonts.gstatic.com" />
+      </head>
       <body
         className={`${poppins.variable} font-poppins antialiased`}
       >
         <NextIntlClientProvider messages={messages} locale={locale}>
           {isStudioRoute ? children : <MainLayout>{children}</MainLayout>}
+          <WebVitalsReporter />
         </NextIntlClientProvider>
       </body>
     </html>

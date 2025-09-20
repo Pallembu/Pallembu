@@ -6,6 +6,34 @@ export function middleware(request: NextRequest) {
   // Set pathname header for layout to use
   response.headers.set('x-pathname', request.nextUrl.pathname);
   
+  // Security Headers
+  
+  // Content Security Policy
+  const cspHeader = [
+    "default-src 'self'",
+    "script-src 'self' 'unsafe-eval' 'unsafe-inline' https://cdn.sanity.io https://www.googletagmanager.com https://www.google-analytics.com",
+    "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com",
+    "img-src 'self' blob: data: https://cdn.sanity.io https://images.unsplash.com https://www.google-analytics.com",
+    "font-src 'self' https://fonts.gstatic.com",
+    "object-src 'none'",
+    "base-uri 'self'",
+    "form-action 'self'",
+    "frame-ancestors 'none'",
+    "connect-src 'self' https://api.sanity.io https://cdn.sanity.io https://www.google-analytics.com https://analytics.google.com",
+    "media-src 'self' https://cdn.sanity.io",
+    "worker-src 'self' blob:",
+  ].join('; ');
+  
+  response.headers.set('Content-Security-Policy', cspHeader);
+  
+  // Additional Security Headers
+  response.headers.set('X-Frame-Options', 'DENY');
+  response.headers.set('X-Content-Type-Options', 'nosniff');
+  response.headers.set('Referrer-Policy', 'origin-when-cross-origin');
+  response.headers.set('X-DNS-Prefetch-Control', 'on');
+  response.headers.set('Strict-Transport-Security', 'max-age=31536000; includeSubDomains; preload');
+  response.headers.set('Permissions-Policy', 'camera=(), microphone=(), geolocation=()');
+  
   return response;
 }
 

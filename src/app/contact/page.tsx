@@ -3,8 +3,8 @@ import ContactForm from '@/components/ContactForm'
 import { sanityFetch, queries } from '@/sanity/lib/client'
 import AnimatedSection, { PageTransition } from '@/components/AnimatedSection'
 
-// Force dynamic rendering
-export const dynamic = 'force-dynamic'
+// ISR for contact page - revalidate contact info periodically
+export const revalidate = 7200 // Revalidate every 2 hours
 
 export const metadata: Metadata = {
   title: 'Contact Us',
