@@ -15,36 +15,36 @@ const poppins = Poppins({
 
 export const metadata: Metadata = {
   title: {
-    default: "Mahabbatussholihin Tour & Travel - Your Trusted Travel Partner",
-    template: "%s | Mahabbatussholihin Tour & Travel"
+    default: "Tour & Travel - Your Trusted Travel Partner",
+    template: "%s | Tour & Travel"
   },
-  description: "Explore the world with Mahabbatussholihin Tour & Travel - Your trusted partner for unforgettable travel experiences. Discover amazing destinations with our expertly crafted tour packages.",
+  description: "Explore the world with our trusted tour and travel services. Discover amazing destinations with expertly crafted tour packages.",
   keywords: ["tour", "travel", "vacation", "holiday", "tourism", "Indonesia", "travel agency", "tour packages"],
-  authors: [{ name: "Mahabbatussholihin Tour & Travel" }],
-  creator: "Mahabbatussholihin Tour & Travel",
-  publisher: "Mahabbatussholihin Tour & Travel",
+  authors: [{ name: "Tour & Travel" }],
+  creator: "Tour & Travel",
+  publisher: "Tour & Travel",
   formatDetection: {
     email: false,
     address: false,
     telephone: false,
   },
-  metadataBase: new URL('https://mhstour.com'),
+  metadataBase: new URL('https://localhost:3000'),
   alternates: {
     canonical: '/',
   },
   openGraph: {
-    title: "Mahabbatussholihin Tour & Travel - Your Trusted Travel Partner",
-    description: "Explore the world with Mahabbatussholihin Tour & Travel - Your trusted partner for unforgettable travel experiences.",
-    url: 'https://mhstour.com',
-    siteName: 'Mahabbatussholihin Tour & Travel',
+    title: "Tour & Travel - Your Trusted Travel Partner",
+    description: "Explore the world with our trusted tour and travel services.",
+    url: 'https://localhost:3000',
+    siteName: 'Tour & Travel',
     locale: 'en_US',
     type: 'website',
   },
   twitter: {
     card: 'summary_large_image',
-    title: "Mahabbatussholihin Tour & Travel - Your Trusted Travel Partner",
-    description: "Explore the world with Mahabbatussholihin Tour & Travel - Your trusted partner for unforgettable travel experiences.",
-    creator: '@mhstour',
+    title: "Tour & Travel - Your Trusted Travel Partner",
+    description: "Explore the world with our trusted tour and travel services.",
+    creator: '@tourtravelid',
   },
   robots: {
     index: true,

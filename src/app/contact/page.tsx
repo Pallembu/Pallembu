@@ -8,7 +8,7 @@ export const dynamic = 'force-dynamic'
 
 export const metadata: Metadata = {
   title: 'Contact Us',
-  description: 'Get in touch with Mahabbatussholihin Tour & Travel for inquiries, bookings, or any questions about our travel services.',
+  description: 'Get in touch with us for inquiries, bookings, or any questions about our travel services.',
 }
 
 export default async function ContactPage() {
@@ -33,7 +33,7 @@ export default async function ContactPage() {
             Contact Us
           </h1>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-            Ready to start your next adventure? Get in touch with our travel experts 
+            Ready to start your next adventure? Get in touch with us 
             and let us help you plan the perfect trip.
           </p>
         </AnimatedSection>
@@ -133,26 +133,32 @@ export default async function ContactPage() {
             >
               <h3 className="text-xl font-bold text-black mb-4">Business Hours</h3>
               <div className="space-y-2">
-                {siteSettings?.businessHours ? (
+                {siteSettings?.businessHours && (
                   <>
-                    <div className="flex justify-between">
-                      <span className="text-gray-600">Monday - Friday</span>
-                      <span className="font-medium text-black">
-                        {siteSettings.businessHours.mondayFriday || '9:00 AM - 6:00 PM'}
-                      </span>
-                    </div>
-                    <div className="flex justify-between">
-                      <span className="text-gray-600">Saturday</span>
-                      <span className="font-medium text-black">
-                        {siteSettings.businessHours.saturday || '9:00 AM - 4:00 PM'}
-                      </span>
-                    </div>
-                    <div className="flex justify-between">
-                      <span className="text-gray-600">Sunday</span>
-                      <span className="font-medium text-black">
-                        {siteSettings.businessHours.sunday || 'Closed'}
-                      </span>
-                    </div>
+                    {siteSettings.businessHours.mondayFriday && (
+                      <div className="flex justify-between">
+                        <span className="text-gray-600">Monday - Friday</span>
+                        <span className="font-medium text-black">
+                          {siteSettings.businessHours.mondayFriday}
+                        </span>
+                      </div>
+                    )}
+                    {siteSettings.businessHours.saturday && (
+                      <div className="flex justify-between">
+                        <span className="text-gray-600">Saturday</span>
+                        <span className="font-medium text-black">
+                          {siteSettings.businessHours.saturday}
+                        </span>
+                      </div>
+                    )}
+                    {siteSettings.businessHours.sunday && (
+                      <div className="flex justify-between">
+                        <span className="text-gray-600">Sunday</span>
+                        <span className="font-medium text-black">
+                          {siteSettings.businessHours.sunday}
+                        </span>
+                      </div>
+                    )}
                     {siteSettings.businessHours.timezone && (
                       <div className="mt-3 pt-3 border-t border-gray-200">
                         <span className="text-sm text-gray-500">
@@ -160,21 +166,6 @@ export default async function ContactPage() {
                         </span>
                       </div>
                     )}
-                  </>
-                ) : (
-                  <>
-                    <div className="flex justify-between">
-                      <span className="text-gray-600">Monday - Friday</span>
-                      <span className="font-medium text-black">9:00 AM - 6:00 PM</span>
-                    </div>
-                    <div className="flex justify-between">
-                      <span className="text-gray-600">Saturday</span>
-                      <span className="font-medium text-black">9:00 AM - 4:00 PM</span>
-                    </div>
-                    <div className="flex justify-between">
-                      <span className="text-gray-600">Sunday</span>
-                      <span className="font-medium text-black">Closed</span>
-                    </div>
                   </>
                 )}
               </div>

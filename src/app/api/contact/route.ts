@@ -189,7 +189,7 @@ async function sendEmailNotification(contactDoc: any) {
       <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
         <div style="background: linear-gradient(135deg, #39ace7 0%, #9bd4e4 100%); padding: 30px; text-align: center;">
           <h1 style="color: white; margin: 0; font-size: 28px;">New Contact Form Submission</h1>
-          <p style="color: #f0f8ff; margin: 10px 0 0 0;">Mahabbatussholihin Tour & Travel</p>
+          <p style="color: #f0f8ff; margin: 10px 0 0 0;">Tour & Travel</p>
         </div>
         
         <div style="padding: 30px; background: #f8f9fa;">
@@ -250,7 +250,7 @@ async function sendEmailNotification(contactDoc: any) {
             <h2 style="color: #333; margin-top: 0;">Halo ${contactDoc.name},</h2>
             
             <p style="color: #666; line-height: 1.6;">
-              Terima kasih telah menghubungi <strong>Mahabbatussholihin Tour & Travel</strong>. 
+              Terima kasih telah menghubungi kami. 
               Kami telah menerima pesan Anda dengan subject "<em>${contactDoc.subject}</em>".
             </p>
             
@@ -261,29 +261,29 @@ async function sendEmailNotification(contactDoc: any) {
             
             <div style="background: #e8f4f8; padding: 20px; border-radius: 8px; border-left: 4px solid #39ace7; margin: 20px 0;">
               <p style="margin: 0; color: #555;">
-                <strong>Untuk pertanyaan urgent:</strong><br>
+                <strong>Untuk pertanyaan urgent, silakan hubungi:</strong><br>
                 📱 WhatsApp: <a href="https://wa.me/6281234567890" style="color: #39ace7;">+62 812 3456 7890</a><br>
-                📧 Email: <a href="mailto:info@mahabbatussholihin.com" style="color: #39ace7;">info@mahabbatussholihin.com</a>
+                📧 Email: <a href="mailto:info@example.com" style="color: #39ace7;">info@example.com</a>
               </p>
             </div>
             
             <p style="color: #666; line-height: 1.6; margin-bottom: 0;">
               Salam hangat,<br>
-              <strong>Team Mahabbatussholihin Tour & Travel</strong><br>
-              <em>Mitra Terpercaya untuk Perjalanan Spiritual Terbaik</em>
+              <strong>Tim Customer Service</strong><br>
+              <em>Mitra Terpercaya untuk Perjalanan Terbaik</em>
             </p>
           </div>
         </div>
         
         <div style="padding: 20px; text-align: center; background: #333; color: #ccc;">
-          <p style="margin: 0; font-size: 14px;">© 2025 Mahabbatussholihin Tour & Travel</p>
+          <p style="margin: 0; font-size: 14px;">© 2025 Tour & Travel</p>
         </div>
       </div>
     `
 
     // Send auto-reply to customer
     await transporter.sendMail({
-      from: `"Mahabbatussholihin Tour & Travel" <${process.env.SMTP_FROM || process.env.SMTP_USER}>`,
+      from: `"Tour & Travel" <${process.env.SMTP_FROM || process.env.SMTP_USER}>`,
       to: contactDoc.email,
       subject: `Terima kasih atas pesan Anda - ${contactDoc.subject}`,
       html: customerEmailHtml,

@@ -92,7 +92,7 @@ export default async function ServicesPage() {
             Ready to Plan Your Adventure?
           </h2>
           <p className="text-lg text-gray-600 mb-8 max-w-2xl mx-auto">
-            Our travel experts are here to help you create the perfect itinerary. 
+            We are here to help you create the perfect itinerary. 
             Contact us today to start planning your dream vacation.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">

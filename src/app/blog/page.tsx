@@ -22,20 +22,20 @@ export async function generateMetadata({
   searchParams: { category?: string; tag?: string; search?: string; page?: string }
 }): Promise<Metadata> {
   const { category, tag, search, page } = searchParams
-  let title = 'Blog - Mahabbatussholihin Tour & Travel'
-  let description = 'Temukan tips perjalanan, destinasi wisata, dan panduan lengkap untuk petualangan Anda bersama Mahabbatussholihin Tour & Travel.'
+  let title = 'Blog - Tour & Travel'
+  let description = 'Temukan tips perjalanan, destinasi wisata, dan panduan lengkap untuk petualangan Anda.'
 
   if (category) {
-    title = `${category} - Blog MHS Tour`
-    description = `Artikel dan tips tentang ${category} dari Mahabbatussholihin Tour & Travel.`
+    title = `${category} - Blog`
+    description = `Artikel dan tips tentang ${category}.`
   } else if (tag) {
-    title = `${tag} - Blog MHS Tour`
-    description = `Artikel dengan tag ${tag} dari Mahabbatussholihin Tour & Travel.`
+    title = `${tag} - Blog`
+    description = `Artikel dengan tag ${tag}.`
   } else if (search) {
-    title = `Pencarian: ${search} - Blog MHS Tour`
-    description = `Hasil pencarian untuk "${search}" di blog Mahabbatussholihin Tour & Travel.`
+    title = `Pencarian: ${search} - Blog`
+    description = `Hasil pencarian untuk "${search}" di blog.`
   } else if (page && parseInt(page) > 1) {
-    title = `Blog - Halaman ${page} - Mahabbatussholihin Tour & Travel`
+    title = `Blog - Halaman ${page} - Tour & Travel`
   }
 
   return {

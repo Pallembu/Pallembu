@@ -41,11 +41,13 @@ const MainLayout = ({ children }: MainLayoutProps) => {
       </main>
       <Footer />
       
-      {/* Floating WhatsApp Button */}
-      <WhatsAppFloat 
-        phoneNumber={whatsappNumber || '+6281234567890'}
-        message="Halo! Saya tertarik dengan layanan tour Anda. Bisa bantu saya dengan informasi lebih lanjut?"
-      />
+      {/* Floating WhatsApp Button - Only show if WhatsApp number exists in CMS */}
+      {whatsappNumber && (
+        <WhatsAppFloat 
+          phoneNumber={whatsappNumber}
+          message="Hello! I'm interested in your tour services. Can you help me with more information?"
+        />
+      )}
     </div>
   )
 }

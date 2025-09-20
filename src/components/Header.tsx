@@ -106,11 +106,11 @@ const Header = () => {
                   className="h-10 w-auto"
                   priority
                 />
-              ) : (
+              ) : siteSettings?.siteName ? (
                 <span className="text-2xl font-bold text-primary">
-                  {siteSettings?.siteName || 'Mahabbatussholihin Tour & Travel'}
+                  {siteSettings.siteName}
                 </span>
-              )}
+              ) : null}
             </Link>
           </div>
 
@@ -161,7 +161,7 @@ const Header = () => {
               href="/contact"
               className="bg-primary text-white px-4 py-2 rounded-lg text-sm font-medium hover:bg-primary-dark transition-colors duration-200"
             >
-              Book Now
+              {t('bookNow')}
             </Link>
           </div>
 

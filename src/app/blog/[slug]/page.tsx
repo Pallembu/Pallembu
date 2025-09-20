@@ -40,7 +40,7 @@ export async function generateMetadata({
     
     if (!post) {
       return {
-        title: 'Artikel Tidak Ditemukan - Mahabbatussholihin Tour & Travel',
+        title: 'Artikel Tidak Ditemukan - Tour & Travel',
         description: 'Artikel yang Anda cari tidak ditemukan atau sudah tidak tersedia.',
       }
     }

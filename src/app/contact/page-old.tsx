@@ -2,7 +2,7 @@ import { Metadata } from 'next'
 
 export const metadata: Metadata = {
   title: 'Contact Us',
-  description: 'Get in touch with Mahabbatussholihin Tour & Travel for inquiries, bookings, or any questions about our travel services.',
+  description: 'Get in touch with us for inquiries, bookings, or any questions about our travel services.',
 }
 
 export default function ContactPage() {
@@ -169,7 +169,7 @@ export default function ContactPage() {
                   </div>
                   <div className="ml-4">
                     <h3 className="text-lg font-medium text-black">Email</h3>
-                    <p className="text-gray-700 mt-1">info@mahabbatussholihin.com</p>
+                    <p className="text-gray-700 mt-1">info@example.com</p>
                   </div>
                 </div>
                 

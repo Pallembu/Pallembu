@@ -23,14 +23,14 @@ export async function generateMetadata(): Promise<Metadata> {
     })
 
     return {
-      title: siteSettings?.siteTitle || 'Mahabbatussholihin Tour & Travel - Your Gateway to Unforgettable Adventures',
-      description: siteSettings?.siteDescription || 'Discover amazing destinations with Mahabbatussholihin Tour & Travel. We offer personalized travel experiences, expert guides, and unforgettable adventures across Indonesia and beyond.',
+      title: siteSettings?.siteTitle || 'Tour & Travel - Your Gateway to Adventures',
+      description: siteSettings?.siteDescription || 'Discover amazing destinations with our travel services.',
     }
   } catch (error) {
     console.error('Failed to fetch metadata:', error)
     return {
-      title: 'Mahabbatussholihin Tour & Travel - Your Gateway to Unforgettable Adventures',
-      description: 'Discover amazing destinations with Mahabbatussholihin Tour & Travel. We offer personalized travel experiences, expert guides, and unforgettable adventures across Indonesia and beyond.',
+      title: 'Tour & Travel - Your Gateway to Adventures',
+      description: 'Discover amazing destinations with our travel services.',
     }
   }
 }
