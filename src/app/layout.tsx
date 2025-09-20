@@ -66,7 +66,14 @@ export default async function RootLayout({
 }>) {
   const headersList = headers();
   const pathname = headersList.get('x-pathname') || '';
-  const isStudioRoute = pathname.startsWith('/studio');
+  
+  // Check if it's a studio route - be specific about the path
+  const isStudioRoute = pathname === '/studio' || pathname.startsWith('/studio/');
+  
+  // Debug logging for development
+  if (process.env.NODE_ENV === 'development') {
+    console.log('Layout Debug - pathname:', pathname, 'isStudioRoute:', isStudioRoute);
+  }
   
   // Simple locale detection - default to Indonesian
   let locale = 'id';
