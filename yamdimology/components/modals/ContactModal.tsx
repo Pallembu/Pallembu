@@ -112,7 +112,7 @@ export default function ContactModal({
             <TextInput
               placeholder="Enter name"
               value={formData.name}
-              onChange={(e) => handleChange('name', e.target.value)}
+              onChange={(e: React.ChangeEvent<HTMLInputElement>) => handleChange('name', e.target.value)}
               disabled={isViewMode}
               required
             />
@@ -124,7 +124,7 @@ export default function ContactModal({
               type="email"
               placeholder="Enter email"
               value={formData.email}
-              onChange={(e) => handleChange('email', e.target.value)}
+              onChange={(e: React.ChangeEvent<HTMLInputElement>) => handleChange('email', e.target.value)}
               disabled={isViewMode}
               required
             />
@@ -135,7 +135,7 @@ export default function ContactModal({
             <TextInput
               placeholder="Enter phone number"
               value={formData.phone}
-              onChange={(e) => handleChange('phone', e.target.value)}
+              onChange={(e: React.ChangeEvent<HTMLInputElement>) => handleChange('phone', e.target.value)}
               disabled={isViewMode}
             />
           </div>
@@ -145,7 +145,7 @@ export default function ContactModal({
             <TextInput
               placeholder="Enter location"
               value={formData.location}
-              onChange={(e) => handleChange('location', e.target.value)}
+              onChange={(e: React.ChangeEvent<HTMLInputElement>) => handleChange('location', e.target.value)}
               disabled={isViewMode}
             />
           </div>

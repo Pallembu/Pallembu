@@ -109,7 +109,7 @@ export default function ClientContacts({ initialContacts }: ClientContactsProps)
             icon={Search}
             placeholder="Search contacts..."
             value={searchQuery}
-            onChange={(e) => setSearchQuery(e.target.value)}
+            onChange={(e: React.ChangeEvent<HTMLInputElement>) => setSearchQuery(e.target.value)}
             className="max-w-md"
           />
         </div>

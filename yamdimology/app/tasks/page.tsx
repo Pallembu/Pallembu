@@ -25,7 +25,7 @@ async function fetchTasks(): Promise<Task[]> {
     
     const tasks: Task[] = [];
     
-    sessionsSnapshot.forEach((doc) => {
+    sessionsSnapshot.forEach((doc: any) => {
       const data = doc.data();
       
       // Determine status

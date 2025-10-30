@@ -1,0 +1,6 @@
+{
+  "version": 3,
+  "sources": [],
+  "sections": [
+    {"offset": {"line": 23, "column": 0}, "map": {"version":3,"sources":["turbopack:///[project]/src/middleware.ts"],"sourcesContent":["// src/middleware.ts\r\nexport { default } from \"next-auth/middleware\"\r\n\r\nexport const config = { matcher: [\r\n  /*\r\n  * Cocokkan semua path KECUALI yang ada di bawah ini:\r\n  * - /api (rute API)\r\n  * - /_next/static (file statis)\r\n  * - /_next/image (optimasi gambar)\r\n  * - /favicon.ico (ikon)\r\n  * - /login (halaman login itu sendiri)\r\n  */\r\n  '/((?!api|_next/static|_next/image|favicon.ico|login).*)',\r\n]}"],"names":[],"mappings":"AAAA,oBAAoB;;;;AACpB;;AAEO,MAAM,SAAS;IAAE,SAAS;QAC/B;;;;;;;EAOA,GACA;KACD;AAAA"}}]
+}

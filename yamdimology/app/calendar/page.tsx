@@ -22,7 +22,7 @@ async function fetchEvents(): Promise<Event[]> {
     
     const events: Event[] = [];
     
-    sessionsSnapshot.forEach((doc) => {
+    sessionsSnapshot.forEach((doc: any) => {
       const data = doc.data();
       
       const type = data.status === 'ended' ? 

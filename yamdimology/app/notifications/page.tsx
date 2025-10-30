@@ -23,7 +23,7 @@ async function fetchNotifications(): Promise<Notification[]> {
     
     const notifications: Notification[] = [];
     
-    sessionsSnapshot.forEach((doc) => {
+    sessionsSnapshot.forEach((doc: any) => {
       const data = doc.data();
       
       // Create notification for each interview session
@@ -54,7 +54,7 @@ async function fetchNotifications(): Promise<Notification[]> {
       .limit(5)
       .get();
     
-    paymentsSnapshot.forEach((doc) => {
+    paymentsSnapshot.forEach((doc: any) => {
       const data = doc.data();
       
       if (data.status === 'success' || data.status === 'completed') {
